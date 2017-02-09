@@ -30,16 +30,32 @@ class algorithm_sort(object):
 			i = i+1
 			# print templist, args
 		return templist
+	def selectsort(self,templist):
+		templist = self.__sortlist
+		num = len(templist)
+		for i in xrange(num-1):
+			k = i
+			for j in xrange(i+1,num):
+				if templist[j] < templist[k]:
+					k = j
+			if k != i:
+				templist[i], templist[k] = templist[k], templist[i]
+		return templist
 
 count = 500
 a = np.random.rand(count)*2.0-1.0 
 print 'before sorted:', a
-method = algorithm_sort(a)
-b = method.bubbleSort(a)
-print 'after sorted:', b
+bubble_method = algorithm_sort(a)
+select_method = algorithm_sort(a)
+b_bubble = bubble_method.bubbleSort(a)
+b_select = select_method.selectsort(a)
+print 'after bubblesorted:', b_bubble
+print 'after selectsorted:', b_select
 k = np.random.randint(count)
 print k
-sample=b[0:k]
+sample_bubble = b_bubble[0:k]
+sample_select = b_select[0:k]
 plt.figure()
-plt.plot(xrange(k),sample,'ro')
+plt.plot(xrange(k),sample_bubble,'ro')
+plt.plot(xrange(k),sample_select,'b*')
 plt.show()
