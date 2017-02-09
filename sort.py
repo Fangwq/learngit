@@ -14,7 +14,7 @@ class algorithm_sort(object):
 		self.__sortlist = sortlist		#private variable
 		self.__num = len(sortlist)
 	# @staticmethod @classmethod		
-	def bubbleSort(self, templist):
+	def bubblesort(self, templist):
 		templist=self.__sortlist
 		i = 0
 		args = False
@@ -50,7 +50,43 @@ class algorithm_sort(object):
 			templist[j+1] = x
 		return templist
 
-	# def bottomup_merge():
+	def bottomup_merge(self, templist, p, q, r):
+		templist = self.__sortlist
+		tempB = np.zeros(self.__num)
+		s = p-1; t = q; k = p-1
+		while s <= q-1 and t <= r-1:
+			if templist[s]<=templist[t]:
+				tempB[k]=templist[s]
+				s=s+1
+			else:
+				tempB[k]=templist[t]
+				t=t+1
+			k=k+1
+		if s==q:
+			for i in xrange(k, r):
+				tempB[i]=templist[t]
+				t=t+1
+			# print t,r,'===='
+		else:
+			for i in xrange(k, r):
+				tempB[i]=templist[s]
+				s=s+1
+			# print s,q,'####'
+		for i in xrange(p-1,r):
+			templist[i]=tempB[i]
+		return templist[p-1:r]
 
-	# def bottomupsort(self,templist):
-	# 	templist = self.__sortlist
+	def bottomupsort(self,templist):
+		templist = self.__sortlist
+		t=1
+		while t < self.__num:
+			s=t; t=2*s; i=0
+			while i+t < self.__num:
+				self.bottomup_merge(templist, i+1, i+s, i+t)
+				i=i+t
+			if i+s < self.__num:
+				self.bottomup_merge(templist, i+1, i+s, self.__num)
+		return templist
+
+
+
