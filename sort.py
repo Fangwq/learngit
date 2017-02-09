@@ -37,6 +37,7 @@ class algorithm_sort(object):
 					k = j
 			if k != i:
 				templist[i], templist[k] = templist[k], templist[i]		#interchange i and k
+
 		return templist
 
 	def insertsort(self,templist):
@@ -48,6 +49,7 @@ class algorithm_sort(object):
 				templist[j+1] = templist[j]
 				j = j-1
 			templist[j+1] = x
+
 		return templist
 
 	def bottomup_merge(self, templist, p, q, r):
@@ -55,25 +57,26 @@ class algorithm_sort(object):
 		tempB = np.zeros(self.__num)
 		s = p-1; t = q; k = p-1
 		while s <= q-1 and t <= r-1:
-			if templist[s]<=templist[t]:
-				tempB[k]=templist[s]
+			if templist[s] <= templist[t]:
+				tempB[k] = templist[s]
 				s=s+1
 			else:
-				tempB[k]=templist[t]
+				tempB[k] = templist[t]
 				t=t+1
 			k=k+1
 		if s==q:
 			for i in xrange(k, r):
-				tempB[i]=templist[t]
+				tempB[i] = templist[t]
 				t=t+1
 			# print t,r,'===='
 		else:
 			for i in xrange(k, r):
-				tempB[i]=templist[s]
+				tempB[i] = templist[s]
 				s=s+1
 			# print s,q,'####'
 		for i in xrange(p-1,r):
-			templist[i]=tempB[i]
+			templist[i] = tempB[i]
+
 		return templist[p-1:r]
 
 	def bottomupsort(self,templist):
@@ -86,6 +89,7 @@ class algorithm_sort(object):
 				i=i+t
 			if i+s < self.__num:
 				self.bottomup_merge(templist, i+1, i+s, self.__num)
+				
 		return templist
 
 
