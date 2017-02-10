@@ -11,6 +11,7 @@ a0 = np.random.rand(count)*2.0-1.0
 a1 = copy.deepcopy(a0)              #As array is a mutable object, after bubblesort, it will turn into sorted array,
 a2 = copy.deepcopy(a0)				#so I deepcopy the original array.
 a3 = copy.deepcopy(a0)
+a4 = copy.deepcopy(a0)
 print 'before sorted:', a0
 bubble_method = algorithm_sort(a0)
 select_method = algorithm_sort(a1)
@@ -56,10 +57,25 @@ bottomup_end = time.time()
 print 'bottomupsort time:', "{:.5f}s".format(bottomup_end-bottomup_start)
 print 'after bottomupsorted:', b_bottomup
 sample_bottomup = b_bottomup[0:k]
+#==========test modbinarysearch: return x's position=======
+# temp=np.array([ 0.80562415, 0.35855999])
+# binary_method = algorithm_sort(temp)
+# index=binary_method.modbinarysearch(temp,0.720773871231)
+# print 'the position of element x:',index
+#==========test modbinarysearch: return x's position=======
+print 'before sorted:', a4
+modinsert_method = algorithm_sort(a4)
+modinsert_start = time.time()
+b_modinsert = modinsert_method.modinsertsort(a4)
+modinsert_end = time.time()
+print 'after bottomupsorted:', b_modinsert
+print 'bottomupsort time:', "{:.5f}s".format(modinsert_end-modinsert_start)
+sample_modinsert = b_modinsert[0:k]
 plt.figure()
 plt.plot(xrange(k),sample_bubble,'ro')
 plt.plot(xrange(k),sample_select,'b*')
 plt.plot(xrange(k),sample_insert,'g+')
 plt.plot(xrange(k),sample_bottomup,'kd')
+plt.plot(xrange(k),sample_modinsert,'cx')
 plt.xlim(-1,k+1)
 plt.show()

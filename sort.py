@@ -57,7 +57,7 @@ class algorithm_sort(object):
 
 	def bottomup_merge(self, templist, p, q, r):
 		'''merge method used by bottomup sort'''
-		templist = self.__sortlist
+		# templist = self.__sortlist
 		tempB = np.zeros(r-p+1)		#use this method,the memory used will be smaller.
 		s = p-1; t = q; k = p-1
 		while s <= q-1 and t <= r-1:
@@ -90,14 +90,56 @@ class algorithm_sort(object):
 		while t < self.__num:
 			s=t; t=2*s; i=0
 			while i+t < self.__num:
-				print "i={0}, s={1}, t={2}".format(i, s, t), '======'
+				# print "i={0}, s={1}, t={2}".format(i, s, t), '======'
 				self.bottomup_merge(templist, i+1, i+s, i+t)
 				i=i+t
 			if i+s < self.__num:
-				print "i={0}, s={1}, t={2}".format(i, s, t), '######'
+				# print "i={0}, s={1}, t={2}".format(i, s, t), '######'
 				self.bottomup_merge(templist, i+1, i+s, self.__num)
 				
 		return templist
 
+	def modbinarysearch(self, templist, x):
+		'''binary search, but return x's position'''
+		# templist=self.__sortlist
+		low=0; high=len(templist)-1; j=0
+		while low <= high:
+			mid=(low+high)/2
+			# print low,high,mid
+			if x== templist[mid]:
+				j=mid               #if find the x, then return j
+				# print '======'
+				return j
+			elif x < templist[mid]:
+				high=mid-1
+			else:
+				low=mid+1
+		if j==0:                    #if don't find x, then return index of x
+			# print '#####'
+			j=(low+high)/2+1
 
+		return j
 
+	def modinsertsort(self, templist):
+		'''modinsert sort'''
+		templist=self.__sortlist
+		# for i in xrange(1,self.__num):
+		# 	x=templist[i]
+		# 	k=self.modbinarysearch(templist[0:i],x)
+		# 	print x, templist[0:i], k
+		# 	for j in xrange(i-1,k):
+		# 		templist[j+1]=templist[j]
+		# 	templist[k+1]=x
+		for i in xrange(1,self.__num):
+			low=0; temp=templist[i];high=i-1
+			while low <= high:
+				mid=(low+high)/2
+				if temp < templist[mid]:
+					high=mid-1
+				else:
+					low=mid+1			
+			for j in xrange(i-1,high,-1):
+				templist[j+1]=templist[j]			
+			templist[high+1]=temp
+			
+		return templist
