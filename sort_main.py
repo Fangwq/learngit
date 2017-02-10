@@ -6,7 +6,7 @@ from sort import algorithm_sort
 import copy
 
 # np.random.seed(1337)      #generate the same random number each time
-count = 5000
+count = 7
 a0 = np.random.rand(count)*2.0-1.0 
 a1 = copy.deepcopy(a0)              #As array is a mutable object, after bubblesort, it will turn into sorted array,
 a2 = copy.deepcopy(a0)				#so I deepcopy the original array.
