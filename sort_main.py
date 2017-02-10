@@ -6,7 +6,7 @@ from sort import algorithm_sort
 import copy
 
 # np.random.seed(1337)      #generate the same random number each time
-count = 7
+count = 20
 a0 = np.random.rand(count)*2.0-1.0 
 a1 = copy.deepcopy(a0)              #As array is a mutable object, after bubblesort, it will turn into sorted array,
 a2 = copy.deepcopy(a0)				#so I deepcopy the original array.
@@ -58,10 +58,10 @@ print 'bottomupsort time:', "{:.5f}s".format(bottomup_end-bottomup_start)
 print 'after bottomupsorted:', b_bottomup
 sample_bottomup = b_bottomup[0:k]
 #==========test modbinarysearch: return x's position=======
-# temp=np.array([ 0.80562415, 0.35855999])
-# binary_method = algorithm_sort(temp)
-# index=binary_method.modbinarysearch(temp,0.720773871231)
-# print 'the position of element x:',index
+temp=np.array([2,3,6,8,9])
+binary_method = algorithm_sort(temp)
+index=binary_method.modbinarysearch(temp,910)
+print 'the position of element x:',index
 #==========test modbinarysearch: return x's position=======
 print 'before sorted:', a4
 modinsert_method = algorithm_sort(a4)
@@ -69,6 +69,7 @@ modinsert_start = time.time()
 b_modinsert = modinsert_method.modinsertsort(a4)
 modinsert_end = time.time()
 print 'after bottomupsorted:', b_modinsert
+print b_modinsert-b_bottomup
 print 'bottomupsort time:', "{:.5f}s".format(modinsert_end-modinsert_start)
 sample_modinsert = b_modinsert[0:k]
 plt.figure()

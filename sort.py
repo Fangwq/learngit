@@ -116,30 +116,32 @@ class algorithm_sort(object):
 				low=mid+1
 		if j==0:                    #if don't find x, then return index of x
 			# print '#####'
-			j=(low+high)/2+1
+			j=(low+high)/2+1        #these two lines are all right
+			# j=high+1
 
 		return j
 
 	def modinsertsort(self, templist):
 		'''modinsert sort'''
 		templist=self.__sortlist
-		# for i in xrange(1,self.__num):
-		# 	x=templist[i]
-		# 	k=self.modbinarysearch(templist[0:i],x)
-		# 	print x, templist[0:i], k
-		# 	for j in xrange(i-1,k):
-		# 		templist[j+1]=templist[j]
-		# 	templist[k+1]=x
 		for i in xrange(1,self.__num):
-			low=0; temp=templist[i];high=i-1
-			while low <= high:
-				mid=(low+high)/2
-				if temp < templist[mid]:
-					high=mid-1
-				else:
-					low=mid+1			
-			for j in xrange(i-1,high,-1):
-				templist[j+1]=templist[j]			
-			templist[high+1]=temp
-			
+			x=templist[i]
+			k=self.modbinarysearch(templist[0:i],x)
+			print x, templist[0:i], k
+			for j in xrange(i-1,k-1,-1):
+				templist[j+1]=templist[j]
+			templist[k]=x
+		#===the below code is also right====
+		# for i in xrange(1,self.__num):
+		# 	low=0; temp=templist[i];high=i-1
+		# 	while low <= high:
+		# 		mid=(low+high)/2
+		# 		if temp < templist[mid]:
+		# 			high=mid-1
+		# 		else:
+		# 			low=mid+1			
+		# 	for j in xrange(i-1,high,-1):
+		# 		templist[j+1]=templist[j]			
+		# 	templist[high+1]=temp
+
 		return templist
