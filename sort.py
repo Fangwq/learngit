@@ -54,29 +54,29 @@ class algorithm_sort(object):
 
 	def bottomup_merge(self, templist, p, q, r):
 		templist = self.__sortlist
-		tempB = np.zeros(self.__num)
+		tempB = np.zeros(r-p+1)		#use this method,the memory used will be smaller.
 		s = p-1; t = q; k = p-1
 		while s <= q-1 and t <= r-1:
 			if templist[s] <= templist[t]:
-				tempB[k] = templist[s]
+				tempB[k-(p-1)] = templist[s]
 				s=s+1
 			else:
-				tempB[k] = templist[t]
+				tempB[k-(p-1)] = templist[t]
 				t=t+1
 			k=k+1
 		if s==q:
 			for i in xrange(k, r):
-				tempB[i] = templist[t]
+				tempB[i-(p-1)] = templist[t]
 				t=t+1
 			# print t,r,'===='
 		else:
 			for i in xrange(k, r):
-				tempB[i] = templist[s]
+				tempB[i-(p-1)] = templist[s]
 				s=s+1
 			# print s,q,'####'
 		for i in xrange(p-1,r):
-			templist[i] = tempB[i]
-
+			templist[i] = tempB[i-(p-1)]
+		# print 'the auxiliary array:', tempB
 		return templist[p-1:r]
 
 	def bottomupsort(self,templist):
