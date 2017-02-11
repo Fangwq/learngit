@@ -31,15 +31,20 @@ class algorithm_sort(object):
 
 	def selectsort(self,templist):
 		'''select sort'''
-		templist = self.__sortlist
+		# templist = self.__sortlist
+		# for i in xrange(self.__num-1):
+			# k = i
+			# for j in xrange(i+1, self.__num):
+				# if templist[j] < templist[k]:
+					# k = j
+			# if k != i:
+			# 	templist[i], templist[k] = templist[k], templist[i]		#interchange i and k
+		#====second way to handle the problem====
 		for i in xrange(self.__num-1):
-			k = i
-			for j in xrange(i+1, self.__num):
-				if templist[j] < templist[k]:
-					k = j
-			if k != i:
-				templist[i], templist[k] = templist[k], templist[i]		#interchange i and k
-
+			for j in xrange(i+1,self.__num):
+				if templist[j]<=templist[i]:
+					# print templist[i],templist[j]
+					templist[i],templist[j]=templist[j],templist[i]
 		return templist
 
 	def insertsort(self,templist):
@@ -127,11 +132,11 @@ class algorithm_sort(object):
 		for i in xrange(1,self.__num):
 			x=templist[i]
 			k=self.modbinarysearch(templist[0:i],x)
-			print x, templist[0:i], k
+			# print x, templist[0:i], k
 			for j in xrange(i-1,k-1,-1):
 				templist[j+1]=templist[j]
 			templist[k]=x
-		#===the below code is also right====
+		#===the below code is also right,and don't need function modbinarysearch====
 		# for i in xrange(1,self.__num):
 		# 	low=0; temp=templist[i];high=i-1
 		# 	while low <= high:
