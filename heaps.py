@@ -12,16 +12,21 @@ class structure_heap(object):
             return heap
         else:
             while num != 0: 
-                if num != 2:
+                if num %2==0:
+                    if heap[num]> heap[num/2-1]:
+                        print num
+                        count=count+1
+                        heap[num],heap[num/2-1] = heap[num/2-1], heap[num]
+                    else:
+                        break
+                    num=num/2-1
+                else:
                     if heap[num]> heap[num/2]:
                         print num
                         count=count+1
                         heap[num],heap[num/2] = heap[num/2], heap[num]
                     else:
                         break
-                else:
-                    print num
-                    if heap[num/2]> heap[0]:
-                        heap[num/2],heap[0] = heap[0], heap[num/2]
-                num=num/2
+                    num=num/2
+                
         return heap,count
