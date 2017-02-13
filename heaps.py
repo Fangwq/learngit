@@ -26,16 +26,16 @@ class structure_heap(object):
     def siftdown(self, heap, num):
         '''sift down the element whose key is smaller than the key of its max son.'''
         count=0
-        if 2*num >= len(heap):
+        if 2*num > len(heap):
             return heap
         else:
-            while 2*num <= len(heap):
+            while 2*num < len(heap):
                 num=2*num+1
                 if num+1 < len(heap) and heap[num+1] > heap[num]:
                     num=num+1
                 if heap[num] > heap[(num-1)/2]:
                     # print num
-                    count=count+1
+                    # count=count+1
                     heap[num], heap[(num-1)/2] = heap[(num-1)/2], heap[num]
         # print count
         return heap
@@ -58,8 +58,16 @@ class structure_heap(object):
             return heap[0:length]
         heap[num]=y
         if y > x:
-            self.siftup(heap,num)
+            self.siftup(heap, num)
         else:
             self.siftdown(heap, num)
         return heap[0:length]
+
+    def make_heap(self, heap):
+        '''turn an array into heap'''
+        heap=self._array
+        length=len(heap)
+        for i in xrange((length-1)/2,-1,-1):
+            self.siftdown(heap, i)
+        return heap
 
