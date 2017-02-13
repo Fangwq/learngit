@@ -30,11 +30,13 @@ class structure_heap(object):
             return heap
         else:
             while 2*num < len(heap):
+                print len(heap),num
                 num=2*num+1
+                if num ==len(heap):
+                    break
                 if num+1 < len(heap) and heap[num+1] > heap[num]:
                     num=num+1
                 if heap[num] > heap[(num-1)/2]:
-                    # print num
                     # count=count+1
                     heap[num], heap[(num-1)/2] = heap[(num-1)/2], heap[num]
         # print count
@@ -65,9 +67,18 @@ class structure_heap(object):
 
     def make_heap(self, heap):
         '''turn an array into heap'''
-        heap=self._array
+        # heap=self._array
         length=len(heap)
         for i in xrange((length-1)/2,-1,-1):
+            # print i
             self.siftdown(heap, i)
         return heap
 
+    def heapsort(self, heap):
+        num=len(heap)
+        self.make_heap(heap)
+        for i in xrange(num-1, 0, -1):
+            heap[0],heap[i]=heap[i],heap[0]
+            # print len(heap[0:i-1])
+            self.siftdown(heap[0:i],0)
+        return heap
