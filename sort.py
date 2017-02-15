@@ -138,7 +138,7 @@ class algorithm_sort(object):
 			for j in xrange(i-1,k-1,-1):
 				templist[j+1]=templist[j]
 			templist[k]=x
-		#===the below code is also right,and don't need function modbinarysearch====
+		#====the below code is also right,and don't need function modbinarysearch====
 		# for i in xrange(1,self._num):
 		# 	low=0; temp=templist[i];high=i-1
 		# 	while low <= high:

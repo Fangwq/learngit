@@ -138,40 +138,40 @@ class linkedlist(object):
 	# 		yield p.elem
 	# 		p = p.pointer
 
-llist = Node(1)
-p = llist
+llist0 = Node(1)
+p = llist0
 for i in xrange(2,11):
 	p.pointer = Node(i)
 	p = p.pointer
-print llist.length(llist)
+print llist0.length(llist0)
 
-p=llist
+p=llist0
 while p is not None:
 	print p.elem
 	p=p.pointer
 
-mlist1 = linkedlist()
-# print mlist1.random_pop(1)
+llist1 = linkedlist()
+# print llist1.random_pop(1)
 for i in range(10):
-    mlist1.prepend(i)
+    llist1.prepend(i)
 
 for i in range(11, 20):
-    mlist1.endpend(i)
+    llist1.endpend(i)
 
-mlist1.print_all()
+llist1.print_all()
 for i in range(5):
-    print mlist1.pop()
-    print mlist1.pop_last()
+    print llist1.pop()
+    print llist1.pop_last()
 
 # print 
-print mlist1.find(8)
+print llist1.find(8)
 print 'remained:'
-mlist1.print_all()
-mlist1.reverse()
+llist1.print_all()
+llist1.reverse()
 print 'reversed:'
-mlist1.print_all()
-# mlist1.sort()
-# mlist1.print_all()
-# for x in mlist1.elements():
+llist1.print_all()
+# llist1.sort()
+# llist1.print_all()
+# for x in llist1.elements():
 #     print x
 # print '\n'

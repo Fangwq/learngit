@@ -13,7 +13,7 @@ class structure_heap(object):
             return heap
         else:
             while num != 0:   #in this method, I don't need to consider if num is odd or even 
-                if heap[num]> heap[(num-1)/2]:
+                if heap[num] > heap[(num-1)/2]:
                     # print num
                     count=count+1
                     heap[num], heap[(num-1)/2] = heap[(num-1)/2], heap[num]
@@ -29,10 +29,10 @@ class structure_heap(object):
         if 2*num > len(heap):
             return heap
         else:
-            while 2*num < len(heap):
-                print len(heap),num
+            while 2*num < len(heap):    
+                # print len(heap),num
                 num=2*num+1
-                if num ==len(heap):
+                if num ==len(heap):     #I can use the 2*num+1<len(heap) condition,then this two lines can wipe out
                     break
                 if num+1 < len(heap) and heap[num+1] > heap[num]:
                     num=num+1

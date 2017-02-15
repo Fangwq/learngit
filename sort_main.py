@@ -6,7 +6,7 @@ from sort import algorithm_sort
 import copy
 
 # np.random.seed(1337)      #generate the same random number each time
-count = 20
+count = 5000
 a0 = np.random.rand(count)*2.0-1.0 
 a1 = copy.deepcopy(a0)              #As array is a mutable object, after bubblesort, it will turn into sorted array,
 a2 = copy.deepcopy(a0)				#so I deepcopy the original array.
@@ -69,8 +69,8 @@ modinsert_start = time.time()
 b_modinsert = modinsert_method.modinsertsort(a4)
 modinsert_end = time.time()
 print 'after bottomupsorted:', b_modinsert
-print b_modinsert-b_bottomup
-print 'bottomupsort time:', "{:.5f}s".format(modinsert_end-modinsert_start)
+# print b_modinsert-b_bottomup
+print 'modinsertsort time:', "{:.5f}s".format(modinsert_end-modinsert_start)
 sample_modinsert = b_modinsert[0:k]
 plt.figure()
 plt.plot(xrange(k),sample_bubble,'ro')
