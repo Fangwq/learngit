@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import random
-
+#conclusion: the most important thing in the linked list structure 
+#is the head, and it is a little like recurrence
 class Node(object):
 	'''each node contains an element and the pointer 
 		direct to the next element.
@@ -46,14 +47,14 @@ class linkedlist(object):
 
 	def pop(self):        #pop the first element
 		if self._header is None:
-			raise Exception("the list is empty")
+			print "the list is empty"
 		e = self._header.elem
 		self._header = self._header.pointer
 		return e
 
 	def pop_last(self):
 		if self._header is None:
-			raise Exception("the list is empty")
+			print "the list is empty"
 		p = self._header
 		if p.pointer is None:  #If only one element
 			e = p.elem
@@ -65,15 +66,32 @@ class linkedlist(object):
 		p.pointer = None
 		return e
 
-	def find(self, pred):
+	# def find(self, pred):    
+	# 	'''find the element which is equal to value pred'''
+	# 	p = self._header
+	# 	count = 0
+	# 	while p is not None and pred != p.elem:
+	# 		count = count+1
+	# 		p = p.pointer
+	# 	if count == self._header.length(self._header):
+	# 		return 'the element you find is not in the list'
+	# 	return count
+	
+	# use find function, I can pop any one
+	def find(self, index):    
+		'''find the element with its index'''
+		if type(index) != int:
+			raise Exception('the value index must be integer')
 		p = self._header
 		count = 0
-		while p is not None and pred != p.elem:
+		while p is not None and index != count:
 			count = count+1
 			p = p.pointer
-		if count == self._header.length(self._header):
-			return 'the element you find is not in the list'
-		return count
+		if p is not None:
+			x = p.elem
+			return x,'**'
+		else:
+			return 'the index is out of length'
 
 	def print_all(self):
 		p = self._header
@@ -120,23 +138,20 @@ class linkedlist(object):
 	# 		yield p.elem
 	# 		p = p.pointer
 
-# llist = Node(1)
-# # llist.pointer=Node(2)
-# # print llist.pointer
-# # print llist.pointer.pointer
-# p = llist
-# for i in xrange(2,11):
-# 	p.pointer = Node(i)
-# 	p = p.pointer
-# print llist.length(llist)
+llist = Node(1)
+p = llist
+for i in xrange(2,11):
+	p.pointer = Node(i)
+	p = p.pointer
+print llist.length(llist)
 
-# p=llist
-# while p is not None:
-# 	print p.elem
-# 	p=p.pointer
+p=llist
+while p is not None:
+	print p.elem
+	p=p.pointer
 
 mlist1 = linkedlist()
-
+# print mlist1.random_pop(1)
 for i in range(10):
     mlist1.prepend(i)
 
@@ -148,7 +163,8 @@ for i in range(5):
     print mlist1.pop()
     print mlist1.pop_last()
 
-print mlist1.find(3.5)
+# print 
+print mlist1.find(8)
 print 'remained:'
 mlist1.print_all()
 mlist1.reverse()
