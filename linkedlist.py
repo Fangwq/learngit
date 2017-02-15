@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import numpy as np
+import random
 
 class Node(object):
 	'''each node contains an element and the pointer 
@@ -39,7 +40,7 @@ class linkedlist(object):
 			self._header = Node(elem)
 			return
 		p = self._header
-		while p is not None:
+		while p.pointer is not None:
 			p = p.pointer
 		p.pointer = Node(elem)   #p.pointer.pointer = None
 
@@ -77,25 +78,84 @@ class linkedlist(object):
 	def print_all(self):
 		p = self._header
 		while p is not None:
-			print p.elem,', ',   #, for not line break
+			print p.elem,'',   #,not line break
 			p = p.pointer
 		print ''
 
+	def reverse(self):
+		p = self._header
+		if p is None or p.pointer is None:
+			return
+		p = None
+		while self._header is not None:
+			q = self._header 
+			self._header = q.pointer
+			q.pointer = p
+			p = q
+		self._header = p
 
+	def sort(self):
+		p = self._header
+		if p is None and p.pointer is None:
+			return
+		rem = p.pointer
+		p.pointer = None
+		while rem:
+			p = self._header
+			q = None
+			while p and p.elem <= rem.elem:
+				q = p
+				p = p.pointer
+			if q is None:
+				self._header = rem
+			else:
+				q.pointer = rem
+			q = rem
+			rem = rem.pointer
+			q.pointer = p
 
+	# def elements(self):
+	# 	p = self._header
+	# 	while p:
+	# 		yield p.elem
+	# 		p = p.pointer
 
+# llist = Node(1)
+# # llist.pointer=Node(2)
+# # print llist.pointer
+# # print llist.pointer.pointer
+# p = llist
+# for i in xrange(2,11):
+# 	p.pointer = Node(i)
+# 	p = p.pointer
+# print llist.length(llist)
 
-llist = Node(1)
-# llist.pointer=Node(2)
-# print llist.pointer
-# print llist.pointer.pointer
-p = llist
-for i in xrange(2,11):
-	p.pointer = Node(i)
-	p = p.pointer
-print llist.length(llist)
+# p=llist
+# while p is not None:
+# 	print p.elem
+# 	p=p.pointer
 
-p=llist
-while p is not None:
-	print p.elem
-	p=p.pointer
+mlist1 = linkedlist()
+
+for i in range(10):
+    mlist1.prepend(i)
+
+for i in range(11, 20):
+    mlist1.endpend(i)
+
+mlist1.print_all()
+for i in range(5):
+    print(mlist1.pop())
+    print(mlist1.pop_last())
+
+print('remained:')
+mlist1.print_all()
+mlist1.reverse()
+print('reversed:')
+mlist1.print_all()
+mlist1.sort()
+print('sorted:')
+# mlist1.print_all()
+# for x in mlist1.elements():
+#     print(x)
+# print '\n'
