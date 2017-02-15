@@ -44,7 +44,7 @@ class linkedlist(object):
 			p = p.pointer
 		p.pointer = Node(elem)   #p.pointer.pointer = None
 
-	def pop(self):
+	def pop(self):        #pop the first element
 		if self._header is None:
 			raise Exception("the list is empty")
 		e = self._header.elem
@@ -68,11 +68,11 @@ class linkedlist(object):
 	def find(self, pred):
 		p = self._header
 		count = 0
-		while pred != p.elem and p is not None:
+		while p is not None and pred != p.elem:
 			count = count+1
 			p = p.pointer
-		if count==self._header.length(self._header)-1:
-			print 'the pred is not in the list'
+		if count == self._header.length(self._header):
+			return 'the element you find is not in the list'
 		return count
 
 	def print_all(self):
@@ -145,17 +145,17 @@ for i in range(11, 20):
 
 mlist1.print_all()
 for i in range(5):
-    print(mlist1.pop())
-    print(mlist1.pop_last())
+    print mlist1.pop()
+    print mlist1.pop_last()
 
-print('remained:')
+print mlist1.find(3.5)
+print 'remained:'
 mlist1.print_all()
 mlist1.reverse()
-print('reversed:')
+print 'reversed:'
 mlist1.print_all()
-mlist1.sort()
-print('sorted:')
+# mlist1.sort()
 # mlist1.print_all()
 # for x in mlist1.elements():
-#     print(x)
+#     print x
 # print '\n'
