@@ -4,8 +4,10 @@ import matplotlib.pyplot as plt
 import time
 from recurrenceSort import recurrence_sort
 import copy
+import sys
+sys.setrecursionlimit(1500)    # set the maximum depth as 1500
 
-count = 5000
+count = 1200 
 a0 = np.random.rand(count)*2.0-1.0 
 a1 = copy.deepcopy(a0)  
 print 'before sort:', a0

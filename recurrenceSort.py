@@ -10,8 +10,8 @@ class recurrence_sort(object):
 	def rec_SelectSort(self, index):
 		templist = self._array
 		i = index
-		if i <= self._length-2:
-			# print i
+		if i < self._length-1:
+			# print range(i+1, self._length)
 			for j in xrange(i+1, self._length):
 				if templist[j] < templist[i]:
 					templist[j], templist[i] = templist[i], templist[j]
