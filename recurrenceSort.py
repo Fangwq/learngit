@@ -10,13 +10,26 @@ class recurrence_sort(object):
 	def rec_SelectSort(self, index):
 		templist = self._array
 		i = index
-		if i < self._length:
+		if i <= self._length-2:
 			# print i
 			for j in xrange(i+1, self._length):
-				print j,
-				print ''
 				if templist[j] < templist[i]:
 					templist[j], templist[i] = templist[i], templist[j]
 			self.rec_SelectSort(i+1)
 		# print templist
+		return templist
+
+	def rec_InsertSort(self, index):
+		templist = self._array
+		i = index
+		# if i > 1:      #two conditions with two different recursion form
+		if i < self._length:
+			x = templist[i]
+			# self.rec_InsertSort(i-1)
+			j = i-1
+			while j >= 0 and templist[j] > x:
+				templist[j+1] = templist[j]
+				j = j-1
+			templist[j+1] = x
+			self.rec_InsertSort(i+1)
 		return templist
