@@ -23,6 +23,9 @@ print 'before sort:', a2
 b2_method = recurrence_sort(a2)
 b2_sample = b1_method.radixsort(a2,4)
 print 'after sort:', b2_sample
+b3_method = recurrence_sort(64)
+print b3_method.rec_exp(64,2)
+
 plt.figure()
 plt.plot(xrange(count), b0_sample, 'ro')
 plt.plot(xrange(count), b1_sample, 'g+')
