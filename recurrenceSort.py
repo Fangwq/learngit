@@ -37,8 +37,9 @@ class recurrence_sort(object):
 		return templist
 
 	def radixsort(self, array, digit):
+		piece = 15   #it seems that the number doesn't make any difference
 		for j in xrange(digit):
-			L = [[] for i in xrange(10)]
+			L = [[] for i in xrange(piece)]
 			while len(array) > 0 :
 				a = array[0]    
 				# print a, array, '==='
@@ -46,7 +47,7 @@ class recurrence_sort(object):
 				k = a/10**j % 10
 				L[k].append(a)
 			array = L[0]
-			for i in xrange(1,10):
+			for i in xrange(1,piece):
 				array.append(L[i])
 			array = [y for x in array for y in x]     #get the element in a list of list, just like flatten
 			# print array
@@ -54,7 +55,7 @@ class recurrence_sort(object):
 
 	def rec_exp(self, number, times):
 		y = 1
-		n = int(bin(times).replace('0b',''))
+		n = int(bin(times).replace('0b',''))   #get binary representation and change it to int number
 		temp = [] 
 		while n != 0:
 			temp.append(n % 10)
