@@ -33,3 +33,20 @@ class recurrence_sort(object):
 			templist[j+1] = x
 			self.rec_InsertSort(i+1)
 		return templist
+
+	def radixsort(self, array, digit):
+		for j in xrange(digit):
+			L = [[] for i in xrange(10)]
+			while len(array) > 0 :
+				a = array[0]    
+				# print a, array, '==='
+				array.pop(0)
+				k = a/10**j % 10
+				L[k].append(a)
+			array = L[0]
+			for i in xrange(1,10):
+				array.append(L[i])
+			array = [y for x in array for y in x]     #get the element in a list of list, just like flatten
+			# print array
+		return array
+
