@@ -66,3 +66,15 @@ class recurrence_sort(object):
 			if temp[i]==1:
 				y = number*y
 		return y
+
+	def permutation(self, index, array):
+		num = len(array)
+		if index == num:
+			return array
+		else:
+			for i in xrange(index, num):
+				array[i], array[index] = array[index],array[i]
+				self.permutation(index+1,array)
+				array[i], array[index] = array[index],array[i]
+		print array, '******'
+		return array	
