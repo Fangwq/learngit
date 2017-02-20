@@ -37,7 +37,7 @@ class recurrence_sort(object):
 		return templist
 
 	def radixsort(self, array, digit):
-		piece = 15   #it seems that the number doesn't make any difference
+		piece = 10   #it shoule be larger than 9
 		for j in xrange(digit):
 			L = [[] for i in xrange(piece)]
 			while len(array) > 0 :
@@ -66,4 +66,3 @@ class recurrence_sort(object):
 			if temp[i]==1:
 				y = number*y
 		return y
-
