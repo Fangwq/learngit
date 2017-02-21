@@ -67,7 +67,7 @@ class recurrence_sort(object):
 				y = number*y
 		return y
 
-	def permutation(self, index, array):
+	def permutation(self, index, array):   		#the code here is wrong
 		num = len(array)
 		if index == num:
 			return array
@@ -80,7 +80,7 @@ class recurrence_sort(object):
 				# print array, '******'
 		return array	
 
-	def majority(self, index, array):   #something wrong here, the index should be zero
+	def candidate(self, index, array):   
 		i = index
 		c = array[index]
 		count = 1
@@ -92,10 +92,24 @@ class recurrence_sort(object):
 				count = count + 1
 			else:
 				count = count - 1
-		print i
+		# print i
 		if i == n-1:
 			return c
 		else:
-			return self.majority(i+1, array)
+			return self.candidate(i+1, array)
+
+	def majority(self, array):
+		c = self.candidate(0, array)
+		n = len(array)
+		count = 0
+		for j in xrange(n):
+			if array[j] == c:
+				count = count + 1
+		if count > (n-1)/2:
+			return c 
+		else:
+			return 'It does not have majority element'
+
+
 
 
