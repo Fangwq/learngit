@@ -29,11 +29,10 @@ print b3_method.rec_exp(64,2)
 print 'before permutation:', a3
 b3_method = recurrence_sort(a3)
 print b3_method.permutation(5,a3)
-a4 = np.array([1, 3, 2, 3, 3, 4, 3, 6, 10, 3, 3, 5, 3, 7 ])
+a4 = np.array([1, 3, 2, 3, 3, 4, 3, 6, 10, 3, 3, 5, 3, 11 ])
 print 'original member :', a4
 b4_method = recurrence_sort(a4)
-print 'the Majority Element:',b4_method.majority(11, a4)
-
+print 'the Majority Element: %d' % b4_method.majority(14, a4)
 plt.figure()
 plt.plot(xrange(count), b0_sample, 'ro')
 plt.plot(xrange(count), b1_sample, 'g+')
