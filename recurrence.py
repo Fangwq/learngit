@@ -7,7 +7,7 @@ import copy
 import sys
 sys.setrecursionlimit(1500)    # set the maximum depth as 1500
 
-count = 7
+count = 10
 a0 = np.random.rand(count)*2.0-1.0 
 a1 = copy.deepcopy(a0)  
 a2=[7467,1247,3275,6792,9187,9134,4675,1239]
@@ -27,8 +27,12 @@ print 'after sort:', b2_sample
 b3_method = recurrence_sort(64)
 print b3_method.rec_exp(64,2)
 print 'before permutation:', a3
-b4_method = recurrence_sort(a3)
-print b4_method.permutation(5,a3)
+b3_method = recurrence_sort(a3)
+print b3_method.permutation(5,a3)
+a4 = np.array([1, 3, 2, 3, 3, 4, 3, 6, 10, 3, 3, 5, 3, 7 ])
+print 'original member :', a4
+b4_method = recurrence_sort(a4)
+print 'the Majority Element:',b4_method.majority(11, a4)
 
 plt.figure()
 plt.plot(xrange(count), b0_sample, 'ro')

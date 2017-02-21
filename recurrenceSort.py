@@ -72,9 +72,29 @@ class recurrence_sort(object):
 		if index == num:
 			return array
 		else:
+			# print array
 			for i in xrange(index, num):
 				array[i], array[index] = array[index],array[i]
 				self.permutation(index+1,array)
 				array[i], array[index] = array[index],array[i]
-		print array, '******'
+				# print array, '******'
 		return array	
+
+	def majority(self, index, array):
+		i = index
+		c = array[index]
+		count = 1
+		n = len(array)
+		# print i, n
+		while i < n-1 and count > 0:
+			i = i+1 
+			if array[i] == c: 
+				count = count + 1
+			else:
+				count = count - 1
+		if i == n-1:
+			return c
+		else:
+			return self.majority(i+1, array)
+
+
