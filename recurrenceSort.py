@@ -80,7 +80,7 @@ class recurrence_sort(object):
 				# print array, '******'
 		return array	
 
-	def majority(self, index, array):
+	def majority(self, index, array):   #something wrong here, the index should be zero
 		i = index
 		c = array[index]
 		count = 1
@@ -92,6 +92,7 @@ class recurrence_sort(object):
 				count = count + 1
 			else:
 				count = count - 1
+		print i
 		if i == n-1:
 			return c
 		else:
