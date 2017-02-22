@@ -23,6 +23,19 @@ class divideConquer(object):
 			y = max(y1, y2)
 			return (x, y)
 
+	def binarysearch(self, low, high, array, x):
+		if low >= high:
+			return 'Do not find element'
+		else:
+			mid = (low+high-1)/2
+			# print low, high
+			if array[mid] == x:
+				return mid
+			elif x < array[mid]:
+				return self.binarysearch(low, mid-1, array, x)
+			else:
+				return self.binarysearch(mid+1, high, array, x)
+
 
 
 
