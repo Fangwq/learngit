@@ -87,7 +87,7 @@ class divideConquer(object):
 			q = (p-1)/5
 			A = [[] for i in xrange(q)]
 			for i in xrange(q):				
-				A[i]=array[i*5:(i*5+5)]   #append every five elment into []
+				A[i] = array[i*5:(i*5+5)]   #append every five elment into []
 			M = []
 			# print A[0]
 			for i in xrange(q):

@@ -5,7 +5,7 @@ import time
 from divide_conquer import divideConquer
 import copy
 
-count = 2**8
+count = 2**6
 a0 = np.random.rand(count)*2.0-1.0 
 a2 = copy.copy(a0)
 a3 = copy.copy(a0)
@@ -24,9 +24,11 @@ b2_sample = b2_method.mergesort(0, count-1, a2)
 print b2_sample
 print 'original array:', a3
 b3_method = divideConquer(a3)
-b3_sample = b3_method.select(0, count-1, a3, 10)
-print 'sorted array:',b3_method.mergesort(0, count-1, a3)
-print b3_sample
+b3_sample = b3_method.mergesort(0, count-1, a3)
+b3_index = b3_method.select(0, count-1, a3, 10)
+print 'sorted array:',b3_sample
+print 'the indexth smallest element:', b3_index
 plt.figure()
 plt.plot(xrange(count),b2_sample,'ro')
+plt.plot(xrange(count),b3_sample,'b+')
 plt.show()
