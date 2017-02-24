@@ -24,6 +24,7 @@ class divideConquer(object):
 			return (x, y)
 
 	def binarysearch(self, low, high, array, x):
+		'''find element by using binary search'''
 		if low >= high:
 			return 'Do not find element'
 		else:
@@ -66,12 +67,52 @@ class divideConquer(object):
 
 
 	def mergesort(self, low, high, array):
+		'''merge sort'''
 		if low < high:
 			mid = (low+high-1)/2
 			self.mergesort(low, mid, array)
+			# print array
 			self.mergesort(mid+1, high, array)
+			# print array
 			self.bottomup_merge(array, low+1, mid+1, high+1)
 		return array
+
+	def select(self, low, high, array, index):
+		'''find the indexth smallest element'''
+		p = high - low +1
+		if p < 44:
+			array = self.mergesort(low, high, array)
+			return array[index-1]
+		else:
+			q = (p-1)/5
+			A = [[] for i in xrange(q)]
+			for i in xrange(q):				
+				A[i]=array[i*5:(i*5+5)]   #append every five elment into []
+			M = []
+			# print A[0]
+			for i in xrange(q):
+				self.mergesort(0, 4, A[i])
+				M.append(A[i][2])
+			mm = self.select(0, q-1, M, (q+1)/2)  
+			A1 = []
+			A2 = []
+			A3 = []
+			for i in xrange(p):
+				if array[i] < mm:
+					A1.append(array[i])
+				elif array[i] == mm:
+					A2.append(array[i])
+				else:
+					A2.append(array[i])
+			if len(A1) > index:
+				return self.select(0, len(A1)-1, A1, index)
+			if len(A1) + len(A2) >= index:
+				return mm
+			if len(A1) + len(A2) < index:
+				return self.select(0, len(A3)-1, A3, index-len(A1)-len(A2))
+
+
+
 
 
 
