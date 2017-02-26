@@ -111,6 +111,28 @@ class divideConquer(object):
 			if len(A1) + len(A2) < index:
 				return self.select(0, len(A3)-1, A3, index-len(A1)-len(A2))
 
+	def split(self, low, high, array):
+		i = low
+		x = array[low]
+		for j in xrange(low+1, high+1):
+			if array[j] <= x:
+				i = i+1
+				if i != j:
+					array[i], array[j] = array[j], array[i]
+		array[low], array[i] = array[i], array[low]
+		index = i
+		return index, array
+
+	def quicksort(self, low, high, array):
+		if low < high:
+			index, array = self.split(low, high, array)
+			# print index
+			self.quicksort(low, index-1, array)
+			self.quicksort(index+1, high, array)
+		return array
+
+
+
 
 
 
