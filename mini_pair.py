@@ -76,6 +76,7 @@ class closest_pair(object):
 				y = T[temp_ypoint]
 				xpoint = x_array.index(x)
 				ypoint = x_array.index(y)
+				# print xpoint, ypoint
 			# print detal, '===='
 		return detal, xpoint, ypoint
 
