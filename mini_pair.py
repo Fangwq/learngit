@@ -12,7 +12,7 @@ class closest_pair(object):
 	def distance(self, a, b):
 		return np.sqrt((a[0] - b[0])**2 + (a[1] - b[1])**2 )
 
-	def cp(self, low, high, x_array, y_array):		#it still has a little problem in index selection
+	def cp(self, low, high, x_array, y_array):
 		# temp = copy.copy(array)
 		length = len(x_array)
 		if high - low + 1 <= 3:
@@ -67,13 +67,15 @@ class closest_pair(object):
 					dis = self.distance(T[i], T[j])
 					if dis < prime_detal:
 						prime_detal = dis
-						temp_xpoint = i
+						temp_xpoint = i            #temp_xpoint is the index in y_array
 						temp_ypoint = j
 			detal = min(detal, prime_detal)
 			index = np.argmin([detal, prime_detal])
-			if index != 0:
-				xpoint = temp_xpoint
-				ypoint = temp_ypoint
+			if index != 0:                         #find the index in x_array
+				x = T[temp_xpoint]
+				y = T[temp_ypoint]
+				xpoint = x_array.index(x)
+				ypoint = x_array.index(y)
 			# print detal, '===='
 		return detal, xpoint, ypoint
 
