@@ -21,7 +21,7 @@ class dynamic_programming(object):
 		# print L
 		return L[n-1, m-1]
 
-	def matchain(self, R):
+	def matchain(self, R):   #actual order of matrix multiplication?
 		length = len(R)-1
 		C = np.array([[0]*(length) for i in xrange(length)])
 		for d in xrange(length - 1):
