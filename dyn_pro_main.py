@@ -11,3 +11,7 @@ M = [5,10,4,6,10,2]
 b = dynamic_programming(M)
 result = b.matchain(M)
 print result
+l = np.array([[0, 2, 9],[8, 0, 6],[1, float("inf"), 0]])   #expression of Infinite
+c = dynamic_programming(l)
+d = c.floyd(l)
+print d

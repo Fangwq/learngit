@@ -29,8 +29,16 @@ class dynamic_programming(object):
 				j = i + d +1
 				C[i, j] = 10**10
 				for k in xrange(i+1, j+1):
-					print C[i, j], C[i, k-1] + C[k, j] + R[i]*R[k]*R[j+1]
+					# print C[i, j], C[i, k-1] + C[k, j] + R[i]*R[k]*R[j+1]
 					C[i, j] = min(C[i, j], C[i, k-1] + C[k, j] + R[i]*R[k]*R[j+1])
-		return C
+		print C
+		return C[0, length-1]
 
-
+	def floyd(self, L):
+		length = len(L)
+		D = L
+		for i in xrange(length):
+			for j in xrange(length):
+				for k in xrange(length):
+					D[i, j] = min(D[i, j], D[i, k]+D[k, j])
+		return D
