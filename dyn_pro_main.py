@@ -15,3 +15,7 @@ l = np.array([[0, 2, 9],[8, 0, 6],[1, float("inf"), 0]])   #expression of Infini
 c = dynamic_programming(l)
 d = c.floyd(l)
 print d
+x = np.array([[3,2],[4,3],[5,4],[7,5]])
+y = dynamic_programming(x)
+z = y.knapsack(x, 9)
+print z

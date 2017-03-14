@@ -42,3 +42,24 @@ class dynamic_programming(object):
 				for k in xrange(length):
 					D[i, j] = min(D[i, j], D[i, k]+D[k, j])
 		return D
+
+	def knapsack(self, U, C):    #the input U = np.array([[v,s] for i in xrange(n)])
+		n = len(U)
+		V = np.array([[0]*(C+1) for i in xrange(n+1)])
+		for i in xrange(n+1):
+			V[i, 0] = 0
+		for j in xrange(C+1):
+			V[0, j] = 0
+		for i in xrange(1, n+1):
+			for j in xrange(1, C+1):
+				V[i, j] = V[i-1, j]
+				if U[i-1, 1] <= j:
+					V[i, j] = max(V[i, j], V[i-1, j-U[i-1, 1]] + U[i-1, 0] )
+			print V
+		return V[n, C]
+
+
+
+
+
+
