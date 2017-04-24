@@ -18,6 +18,7 @@ cdef dijkstra(graph,src,dest,visited=[],distances={},predecessors={}):
             pred=predecessors.get(pred,None)
             count = count + 1
         if count > 1:
+            path.reverse()
             return 'shortest path:'+str(path)+" cost="+str(distances[dest])
         else:
             path.append(dest)
