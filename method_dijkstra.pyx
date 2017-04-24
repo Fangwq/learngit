@@ -8,10 +8,11 @@ Edge = namedtuple('Edge', 'start, end, cost')
  
 cdef class Graph(object):
     cdef:
-        list edges
+        list edges 
         set vertices
-
+        
     def __cinit__(self, edges):
+        cdef list edges2
         #each edge: Edge(start='a', end='b', cost=7)
         edges2 = [Edge(*edge) for edge in edges]
         self.edges = edges2 
