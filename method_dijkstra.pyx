@@ -96,7 +96,7 @@ cdef class Graph(object):
             s.append(u)
             u = node[u]
         s.append(u)
-        s.append(ddsource)
+        s.append(source)
         s.reverse()
         return lamda, s 
 
