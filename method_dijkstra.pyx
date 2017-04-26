@@ -33,7 +33,7 @@ cdef class Graph(object):
         neighbours = {vertex: set() for vertex in self.vertices}
         for start, end, cost in self.edges:
             neighbours[start].add((end, cost))
-        #pp(neighbours)
+        pp(neighbours)
 
         while q:
             #u = min(q, key=lambda vertex: dist[vertex])
@@ -46,20 +46,74 @@ cdef class Graph(object):
                 if alt < dist[v]:                                  # Relax (u,v,a)
                     dist[v] = alt
                     previous[v] = u
+        
         #pp(previous)
-        #from here, we know the order of vertex
+        #from here, we know the order of vertex from source to destination
         s, u = deque(), dest
         while previous[u]:
             s.appendleft(u)
             u = previous[u]
         s.appendleft(u)
+        print '***', dist
         return s
+    
+    #the following code is written by myself according to the algorithm in
+    #book. And maybe it is more convenient to use adjacency list data
+    #structure.
+    cdef me_dijkstra(self, source, dest):
+        cdef:
+            int i, n, cost 
+            set X, Y, 
+            dict lamda, temp
+            list s
+            str u, w, start, end
+            
+        assert source in self.vertices
+        X = {source}
+        q = self.vertices.copy()
+        n = len(q)
+        Y = q - X
+        lamda = {vertex: inf for vertex in self.vertices}
+        node = {vertex: None for vertex in self.vertices}
+        lamda[source] = 0
+        temp = {vertex: set() for vertex in self.vertices}
+        for start, end, cost in self.edges:
+            temp[start].add((end, cost))
+            if start == source:
+                lamda[end] = cost
+
+        for i in xrange(n-1):
+            y = min(Y, key = lamda.get) 
+            X.add(y)
+            Y = Y - {y}
+            for w, cost in temp[y]:
+                if w in Y and lamda[y] + cost < lamda[w]:
+                    lamda[w] = lamda[y] + cost
+                    node[w] = y
+        print node
+        s, u = [], dest
+        while node[u]:
+            s.append(u)
+            u = node[u]
+        s.append(u)
+        s.append(ddsource)
+        s.reverse()
+        return lamda, s 
 
 cpdef main():
-    graph = Graph([("a", "b", 7),  ("a", "c", 9),  ("a", "f", 14), ("b", "c", 10),
-               ("b", "d", 15), ("c", "d", 11), ("c", "f", 2),  ("d", "e", 6),
-               ("e", "f", 9)])
-    return pp(graph.dijkstra("a", "e"))
+    cdef str begin, end
+
+    #directed graph with nonnegative cost
+    #graph = Graph([("a", "b", 7),  ("a", "c", 9),  ("a", "f", 14), ("b", "c", 10),
+    #           ("b", "d", 15), ("c", "d", 11), ("c", "f", 2),  ("d", "e", 6),
+    #           ("e", "f", 9), ("f", "d", 3)])
+    graph = Graph([("a", "b", 1), ("a", "c", 12), ("b", "d", 3), ("b", "c", 9),
+                ("d", "c", 4), ("c", "e", 5), ("d", "e", 13), ("d", "f", 15),
+                ("e", "f", 4)])
+    begin = "a"
+    end = "f" 
+    print graph.me_dijkstra(begin, end)
+    return pp(graph.dijkstra(begin, end))
 
 
 # reference: https://www.allegro.cc/forums/thread/605619
