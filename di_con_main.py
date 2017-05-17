@@ -5,7 +5,7 @@ import time
 from divide_conquer import divideConquer
 import copy
 
-count = 2**6
+count = 2**7
 a0 = np.random.rand(count)*2.0-1.0 
 a2 = copy.copy(a0)
 a3 = copy.copy(a0)
@@ -24,16 +24,24 @@ b2_method = divideConquer(a2)
 b2_sample = b2_method.mergesort(0, count-1, a2)
 print b2_sample
 #=======================================
-print 'original array:', a3
+# print 'original array:', a3
+merge_start = time.time()
 b3_method = divideConquer(a3)
 b3_sample = b3_method.mergesort(0, count-1, a3)
-b3_index = b3_method.select(0, count-1, a3, 10)
+merge_end = time.time()
+index = 10
+b3_index = b3_method.select(0, count-1, a3, index)
 print 'sorted array with mergesort:',b3_sample
-print 'the indexth smallest element:', b3_index
+print 'merge time:', "{:.5f}s".format(merge_end - merge_start)
+print 'the {:}th smallest element: {:.10f}'.format(index, b3_index)
 #=======================================
+quick_start = time.time()
 b4_method = divideConquer(a4)
 b4_sample = b4_method.quicksort(0, count-1, a4)
-print 'sorted array with quicksort:',b4_sample
+quick_end = time.time()
+# print 'sorted array with quicksort:',b4_sample
+print 'quick time:', "{:.5f}s".format(quick_end - quick_start)
+
 plt.figure()
 plt.plot(xrange(count),b2_sample,'ro')
 plt.plot(xrange(count),b3_sample,'b+')
