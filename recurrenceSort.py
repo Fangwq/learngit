@@ -100,6 +100,7 @@ class recurrence_sort(object):
 
 	def majority(self, array):
 		c = self.candidate(0, array)
+		print c
 		n = len(array)
 		count = 0
 		for j in xrange(n):

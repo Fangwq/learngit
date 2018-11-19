@@ -42,7 +42,7 @@ class closest_pair(object):
 
 			# ========another way to get the result=======
 			detal, xpoint, ypoint = self.brute_force(x_array[low:high+1])
-			print xpoint, ypoint, '######'
+			# print xpoint, ypoint, '######'
 		else:
 			T = []
 			mid = (low + high -1)/2
@@ -82,7 +82,7 @@ class closest_pair(object):
 			# 			xindex = i            #xindex is the index in T
 			# 			yindex = j
 			# 		j = j+1
-			print xindex, yindex, '====='
+			# print xindex, yindex, '====='
 			detal = min(detal, prime_detal)
 			index = np.argmin([detal, prime_detal])
 			if index != 0:                         #find the index in x_array
@@ -91,7 +91,7 @@ class closest_pair(object):
 				y = T[yindex]
 				xpoint = x_array.index(x)
 				ypoint = x_array.index(y)
-				print xpoint, ypoint, '****'
+				# print xpoint, ypoint, '****'
 		return detal, xpoint, ypoint
 
 	def brute_force(self, array):
@@ -120,7 +120,7 @@ for i in xrange(count):
 rand.sort() 							#sort by x
 X = rand
 temp = copy.copy(X)
-temp.sort(key=lambda x: x[1])   		#sort by y
+temp.sort(key=lambda x: x[1])   		#sort by y, actually I can sort it in the funtion
 Y = temp
 # print X
 # print Y

@@ -17,7 +17,7 @@ def union(x, y):
 	x_root = find(x)
 	y_root = find(y)
 	if x_root == y_root:   #in same set
-		break
+		return x_root
 	if rank[x_root] > rank[y_root]:
 		parent[y_root] = x_root
 		if rank[x_root] == rank[y_root]:

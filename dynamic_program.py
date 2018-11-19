@@ -55,7 +55,7 @@ class dynamic_programming(object):
 				V[i, j] = V[i-1, j]
 				if U[i-1, 1] <= j:
 					V[i, j] = max(V[i, j], V[i-1, j-U[i-1, 1]] + U[i-1, 0] )
-			print V
+			# print V
 		return V[n, C]
 
 

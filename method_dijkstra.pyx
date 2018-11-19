@@ -83,14 +83,15 @@ cdef class Graph(object):
                 lamda[end] = cost
 
         for i in xrange(n-1):
-            y = min(Y, key = lamda.get) 
+            y = min(Y, key = lamda.get)
             X.add(y)
             Y = Y - {y}
+            print lamda, y
             for w, cost in temp[y]:
                 if w in Y and lamda[y] + cost < lamda[w]:
                     lamda[w] = lamda[y] + cost
                     node[w] = y
-        print node
+        #print node
         s, u = [], dest
         while node[u]:
             s.append(u)
@@ -112,7 +113,7 @@ cpdef main():
                 ("e", "f", 4)])
     begin = "a"
     end = "f" 
-    print graph.me_dijkstra(begin, end)
+    print '---', graph.me_dijkstra(begin, end)
     return pp(graph.dijkstra(begin, end))
 
 

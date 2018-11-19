@@ -93,7 +93,7 @@ class algorithm_sort(object):
 	def bottomupsort(self,templist):
 		'''bottomup sort'''
 		templist = self._sortlist
-		t=1
+		t = 1
 		while t < self._num:
 			s=t; t=2*s; i=0
 			while i+t < self._num:
